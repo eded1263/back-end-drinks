@@ -7,6 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('name')
+      table.string('slug')
       table.string('instructions')
       table.string('image')
       table.foreign('category_id').references('categories.id')

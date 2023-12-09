@@ -18,6 +18,9 @@ export default class Drink extends BaseModel {
   public name: string
 
   @column()
+  public slug: string
+
+  @column()
   public instructions: string
 
   @column()
@@ -31,7 +34,7 @@ export default class Drink extends BaseModel {
   public usersFavorite: ManyToMany<typeof User>
 
   @belongsTo(() => Category)
-  public catgory: BelongsTo<typeof Category>
+  public category: BelongsTo<typeof Category>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
