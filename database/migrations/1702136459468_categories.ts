@@ -7,12 +7,13 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('name')
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.string('slug')
+      table.timestamps()
+      table.engine('InnoDB')
     })
   }
 
   public async down() {
-    this.schema.dropTable(this.tableName)
+    await this.schema.dropTable(this.tableName)
   }
 }

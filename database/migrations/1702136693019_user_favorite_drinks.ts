@@ -6,10 +6,12 @@ export default class extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table.integer('user_id').unsigned()
+      table.integer('drink_id').unsigned()
       table.foreign('user_id').references('users.id')
       table.foreign('drink_id').references('drinks.id')
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.timestamps()
+      table.engine('InnoDB')
     })
   }
 

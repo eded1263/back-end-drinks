@@ -8,15 +8,15 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('name')
       table.string('slug')
-      table.string('instructions')
+      table.text('instructions')
       table.string('image')
-      table.foreign('category_id').references('categories.id')
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.integer('category_id').unsigned().references('id').inTable('categories')
+      table.timestamps()
+      table.engine('InnoDB')
     })
   }
 
   public async down() {
-    this.schema.dropTable(this.tableName)
+    await this.schema.dropTable(this.tableName)
   }
 }
