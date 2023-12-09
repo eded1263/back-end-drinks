@@ -1,0 +1,36 @@
+version: '3.3'
+services:
+  drinks-api:
+    build: 
+      dockerfile: Dockerfile.dev
+      context: .
+    ports:
+      - "3333:3333"
+    volumes:
+      - /app/node_modules
+      - .:/app
+    networks:
+      drinks_network:
+        ipv4_address: 10.5.0.5
+  db_drinks:
+    image: mysql:5.7
+    container_name: db_drinks
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_dev:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: drinks
+      MYSQL_USER: lucid
+      MYSQL_PASSWORD: lucidpass
+    networks:
+      drinks_network:
+        ipv4_address: 10.5.0.6
+networks:
+  drinks_network:
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
