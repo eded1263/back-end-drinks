@@ -22,3 +22,4 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/drinks', 'DrinksController.getDrinks')
 Route.get('/categories', 'CategoriesController.getCategories')
+Route.post('/login', 'UsersController.login')

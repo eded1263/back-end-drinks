@@ -14,7 +14,7 @@ export default class User extends BaseModel {
     pivotRelatedForeignKey: 'drink_id',
     pivotForeignKey: 'user_id',
   })
-  public drinks: ManyToMany<typeof Drink>
+  public favoriteDrinks: ManyToMany<typeof Drink>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
