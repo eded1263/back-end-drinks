@@ -9,6 +9,6 @@ export default class DrinksController {
   }
 
   public async getDrinks({ request }: HttpContextContract) {
-    return await this.drinksService.getDrinks(request.params()['category'])
+    return await this.drinksService.getDrinks(request.all()['category'])
   }
 }

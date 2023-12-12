@@ -26,6 +26,9 @@ export default class Drink extends BaseModel {
   @column()
   public image: string
 
+  @column()
+  public category_id: number
+
   @manyToMany(() => User, {
     pivotTable: 'user_favorite_drinks',
     pivotForeignKey: 'drink_id',
@@ -33,7 +36,9 @@ export default class Drink extends BaseModel {
   })
   public usersFavorite: ManyToMany<typeof User>
 
-  @belongsTo(() => Category)
+  @belongsTo(() => Category, {
+    foreignKey: 'category_id',
+  })
   public category: BelongsTo<typeof Category>
 
   @column.dateTime({ autoCreate: true })

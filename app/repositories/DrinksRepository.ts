@@ -4,7 +4,7 @@ export class DrinksRepository {
     const drinksQuery = Drink.query().select('*')
 
     if (category) {
-      drinksQuery.preload('category', (categoryQuery) => {
+      drinksQuery.whereHas('category', (categoryQuery) => {
         categoryQuery.where('slug', category)
       })
     }
