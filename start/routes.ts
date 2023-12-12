@@ -20,6 +20,9 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/drinks', 'DrinksController.getDrinks')
-Route.get('/categories', 'CategoriesController.getCategories')
+Route.group(() => {
+  Route.get('/drinks', 'DrinksController.getDrinks')
+  Route.get('/categories', 'CategoriesController.getCategories')
+  Route.get('/profile', 'UsersController.getProfile')
+}).middleware('auth:api')
 Route.post('/login', 'UsersController.login')
